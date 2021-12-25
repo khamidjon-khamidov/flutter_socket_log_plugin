@@ -1,9 +1,9 @@
 part of flutter_socket_log_plugin;
 
-class _FluttterSocketLogPluginImpl extends FluttterSocketLogPlugin {
+class _FlutterSocketLogPluginImpl extends FlutterSocketLogPlugin {
   bool isInitialized = false;
-  List<protos.LogTag> mLogTags = [];
-  List<protos.LogLevel> mLogLevels = [];
+  List<protos.LogTag> allLogTags = [];
+  List<protos.LogLevel> allLogLevels = [];
   late String appName;
 
   BehaviorSubject<Socket?> clientSubject = BehaviorSubject.seeded(null);
@@ -25,8 +25,8 @@ class _FluttterSocketLogPluginImpl extends FluttterSocketLogPlugin {
     isInitialized = true;
 
     this.appName = appName;
-    mLogTags = logTags ?? ProtoMaker.defaultLogTags;
-    mLogLevels = logLevels ?? ProtoMaker.defaultLogLevels;
+    allLogTags = logTags ?? ProtoMaker.defaultLogTags;
+    allLogLevels = logLevels ?? ProtoMaker.defaultLogLevels;
     initSocket();
   }
 
@@ -76,8 +76,15 @@ class _FluttterSocketLogPluginImpl extends FluttterSocketLogPlugin {
     protos.LogLevel logLevel,
     List<protos.LogTag> logTags,
   ) {
-    client.then((Socket? mClient) => {
-      mClient?.write();
-    });
+    protos.LogMessage message = ProtoMaker.createLogMessage(
+      appName: appName,
+      message: log,
+      logLevel: logLevel,
+      logTags: logTags,
+      allLogTags: allLogTags,
+      allLogLevels: allLogLevels,
+    );
+
+    client.then((Socket? mClient) => {mClient?.write(message.writeToBuffer())});
   }
 }

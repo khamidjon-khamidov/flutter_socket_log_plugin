@@ -1,6 +1,6 @@
 part of flutter_socket_log_plugin;
 
-abstract class FluttterSocketLogPlugin {
+abstract class FlutterSocketLogPlugin {
   Stream<Socket?> get clientStream;
 
   /// initializes the plugin
