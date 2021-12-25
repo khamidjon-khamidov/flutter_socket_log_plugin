@@ -2,8 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttter_socket_log_plugin/fluttter_socket_log_plugin.dart';
 
 void main() {
+  FlutterSocketLogPlugin.instance.init(appName: 'Dummy App');
   runApp(const MyApp());
 }
 

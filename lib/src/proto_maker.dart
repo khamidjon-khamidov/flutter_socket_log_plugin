@@ -1,47 +1,6 @@
 part of flutter_socket_log_plugin;
 
 abstract class ProtoMaker {
-  static List<protos.LogLevel> defaultLogLevels = [
-    createLogLevel(
-      'Error',
-      Colors.red.value,
-      Icons.error.codePoint,
-    ),
-    createLogLevel(
-      'Debug',
-      Colors.black.value,
-      Icons.bug_report.codePoint,
-    ),
-    createLogLevel(
-      'Warning',
-      Colors.yellow.value,
-      Icons.warning.codePoint,
-    ),
-    createLogLevel(
-      'Info',
-      Colors.blue.value,
-      Icons.info_outline.codePoint,
-    ),
-    createLogLevel(
-      'Success',
-      Colors.green.value,
-      Icons.done.codePoint,
-    )
-  ];
-
-  static List<protos.LogTag> defaultLogTags = [
-    createLogTag(
-      'Network',
-      Colors.red.shade50.value,
-      Icons.network_wifi.codePoint,
-    ),
-    createLogTag(
-      'Bluetooth',
-      Colors.blue.value,
-      Icons.bluetooth.codePoint,
-    ),
-  ];
-
   static protos.LogMessage createLogMessage({
     required String appName,
     required String message,
