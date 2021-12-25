@@ -1,6 +1,12 @@
 part of flutter_socket_log_plugin;
 
 abstract class FlutterSocketLogPlugin {
+  FlutterSocketLogPlugin? _instance;
+
+  FlutterSocketLogPlugin get instance => _instance ??= _FlutterSocketLogPluginImpl();
+
+  /// [clientStream] stream which sends current
+  /// Socket client changes.
   Stream<Socket?> get clientStream;
 
   /// initializes the plugin
