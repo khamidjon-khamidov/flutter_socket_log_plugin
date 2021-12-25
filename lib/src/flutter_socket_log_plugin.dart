@@ -4,7 +4,14 @@ abstract class FluttterSocketLogPlugin {
   Stream<Socket?> get clientStream;
 
   void init({
-    List<protos.LogType>? logTypes,
+    required String appName,
+    List<protos.LogLevel>? logLevels,
     List<protos.LogTag>? logTags,
   });
+
+  void log(
+    String log,
+    protos.LogLevel logLevel,
+    List<protos.LogTag> logTags,
+  );
 }

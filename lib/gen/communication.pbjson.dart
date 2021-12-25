@@ -15,16 +15,18 @@ const LogMessage$json = const {
     const {'1': 'timestamp', '3': 1, '4': 1, '5': 5, '10': 'timestamp'},
     const {'1': 'appName', '3': 2, '4': 1, '5': 9, '10': 'appName'},
     const {'1': 'message', '3': 3, '4': 1, '5': 9, '10': 'message'},
-    const {'1': 'logTypes', '3': 4, '4': 3, '5': 11, '6': '.LogType', '10': 'logTypes'},
-    const {'1': 'logTags', '3': 5, '4': 3, '5': 11, '6': '.LogTag', '10': 'logTags'},
+    const {'1': 'allLogLevels', '3': 4, '4': 3, '5': 11, '6': '.LogLevel', '10': 'allLogLevels'},
+    const {'1': 'allLogTags', '3': 5, '4': 3, '5': 11, '6': '.LogTag', '10': 'allLogTags'},
+    const {'1': 'logTags', '3': 6, '4': 3, '5': 11, '6': '.LogTag', '10': 'logTags'},
+    const {'1': 'logLevel', '3': 7, '4': 1, '5': 11, '6': '.LogLevel', '10': 'logLevel'},
   ],
 };
 
 /// Descriptor for `LogMessage`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List logMessageDescriptor = $convert.base64Decode('CgpMb2dNZXNzYWdlEhwKCXRpbWVzdGFtcBgBIAEoBVIJdGltZXN0YW1wEhgKB2FwcE5hbWUYAiABKAlSB2FwcE5hbWUSGAoHbWVzc2FnZRgDIAEoCVIHbWVzc2FnZRIkCghsb2dUeXBlcxgEIAMoCzIILkxvZ1R5cGVSCGxvZ1R5cGVzEiEKB2xvZ1RhZ3MYBSADKAsyBy5Mb2dUYWdSB2xvZ1RhZ3M=');
-@$core.Deprecated('Use logTypeDescriptor instead')
-const LogType$json = const {
-  '1': 'LogType',
+final $typed_data.Uint8List logMessageDescriptor = $convert.base64Decode('CgpMb2dNZXNzYWdlEhwKCXRpbWVzdGFtcBgBIAEoBVIJdGltZXN0YW1wEhgKB2FwcE5hbWUYAiABKAlSB2FwcE5hbWUSGAoHbWVzc2FnZRgDIAEoCVIHbWVzc2FnZRItCgxhbGxMb2dMZXZlbHMYBCADKAsyCS5Mb2dMZXZlbFIMYWxsTG9nTGV2ZWxzEicKCmFsbExvZ1RhZ3MYBSADKAsyBy5Mb2dUYWdSCmFsbExvZ1RhZ3MSIQoHbG9nVGFncxgGIAMoCzIHLkxvZ1RhZ1IHbG9nVGFncxIlCghsb2dMZXZlbBgHIAEoCzIJLkxvZ0xldmVsUghsb2dMZXZlbA==');
+@$core.Deprecated('Use logLevelDescriptor instead')
+const LogLevel$json = const {
+  '1': 'LogLevel',
   '2': const [
     const {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
     const {'1': 'color', '3': 2, '4': 1, '5': 5, '10': 'color'},
@@ -32,8 +34,8 @@ const LogType$json = const {
   ],
 };
 
-/// Descriptor for `LogType`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List logTypeDescriptor = $convert.base64Decode('CgdMb2dUeXBlEhIKBG5hbWUYASABKAlSBG5hbWUSFAoFY29sb3IYAiABKAVSBWNvbG9yEhoKCGljb25EYXRhGAMgASgFUghpY29uRGF0YQ==');
+/// Descriptor for `LogLevel`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List logLevelDescriptor = $convert.base64Decode('CghMb2dMZXZlbBISCgRuYW1lGAEgASgJUgRuYW1lEhQKBWNvbG9yGAIgASgFUgVjb2xvchIaCghpY29uRGF0YRgDIAEoBVIIaWNvbkRhdGE=');
 @$core.Deprecated('Use logTagDescriptor instead')
 const LogTag$json = const {
   '1': 'LogTag',

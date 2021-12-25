@@ -14,8 +14,10 @@ class LogMessage extends $pb.GeneratedMessage {
     ..a<$core.int>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'timestamp', $pb.PbFieldType.O3)
     ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'appName', protoName: 'appName')
     ..aOS(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'message')
-    ..pc<LogType>(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'logTypes', $pb.PbFieldType.PM, protoName: 'logTypes', subBuilder: LogType.create)
-    ..pc<LogTag>(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'logTags', $pb.PbFieldType.PM, protoName: 'logTags', subBuilder: LogTag.create)
+    ..pc<LogLevel>(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'allLogLevels', $pb.PbFieldType.PM, protoName: 'allLogLevels', subBuilder: LogLevel.create)
+    ..pc<LogTag>(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'allLogTags', $pb.PbFieldType.PM, protoName: 'allLogTags', subBuilder: LogTag.create)
+    ..pc<LogTag>(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'logTags', $pb.PbFieldType.PM, protoName: 'logTags', subBuilder: LogTag.create)
+    ..aOM<LogLevel>(7, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'logLevel', protoName: 'logLevel', subBuilder: LogLevel.create)
     ..hasRequiredFields = false
   ;
 
@@ -24,8 +26,10 @@ class LogMessage extends $pb.GeneratedMessage {
     $core.int? timestamp,
     $core.String? appName,
     $core.String? message,
-    $core.Iterable<LogType>? logTypes,
+    $core.Iterable<LogLevel>? allLogLevels,
+    $core.Iterable<LogTag>? allLogTags,
     $core.Iterable<LogTag>? logTags,
+    LogLevel? logLevel,
   }) {
     final _result = create();
     if (timestamp != null) {
@@ -37,11 +41,17 @@ class LogMessage extends $pb.GeneratedMessage {
     if (message != null) {
       _result.message = message;
     }
-    if (logTypes != null) {
-      _result.logTypes.addAll(logTypes);
+    if (allLogLevels != null) {
+      _result.allLogLevels.addAll(allLogLevels);
+    }
+    if (allLogTags != null) {
+      _result.allLogTags.addAll(allLogTags);
     }
     if (logTags != null) {
       _result.logTags.addAll(logTags);
+    }
+    if (logLevel != null) {
+      _result.logLevel = logLevel;
     }
     return _result;
   }
@@ -94,22 +104,36 @@ class LogMessage extends $pb.GeneratedMessage {
   void clearMessage() => clearField(3);
 
   @$pb.TagNumber(4)
-  $core.List<LogType> get logTypes => $_getList(3);
+  $core.List<LogLevel> get allLogLevels => $_getList(3);
 
   @$pb.TagNumber(5)
-  $core.List<LogTag> get logTags => $_getList(4);
+  $core.List<LogTag> get allLogTags => $_getList(4);
+
+  @$pb.TagNumber(6)
+  $core.List<LogTag> get logTags => $_getList(5);
+
+  @$pb.TagNumber(7)
+  LogLevel get logLevel => $_getN(6);
+  @$pb.TagNumber(7)
+  set logLevel(LogLevel v) { setField(7, v); }
+  @$pb.TagNumber(7)
+  $core.bool hasLogLevel() => $_has(6);
+  @$pb.TagNumber(7)
+  void clearLogLevel() => clearField(7);
+  @$pb.TagNumber(7)
+  LogLevel ensureLogLevel() => $_ensure(6);
 }
 
-class LogType extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'LogType', createEmptyInstance: create)
+class LogLevel extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'LogLevel', createEmptyInstance: create)
     ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'name')
     ..a<$core.int>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'color', $pb.PbFieldType.O3)
     ..a<$core.int>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'iconData', $pb.PbFieldType.O3, protoName: 'iconData')
     ..hasRequiredFields = false
   ;
 
-  LogType._() : super();
-  factory LogType({
+  LogLevel._() : super();
+  factory LogLevel({
     $core.String? name,
     $core.int? color,
     $core.int? iconData,
@@ -126,26 +150,26 @@ class LogType extends $pb.GeneratedMessage {
     }
     return _result;
   }
-  factory LogType.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory LogType.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  factory LogLevel.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory LogLevel.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
   'Will be removed in next major version')
-  LogType clone() => LogType()..mergeFromMessage(this);
+  LogLevel clone() => LogLevel()..mergeFromMessage(this);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  LogType copyWith(void Function(LogType) updates) => super.copyWith((message) => updates(message as LogType)) as LogType; // ignore: deprecated_member_use
+  LogLevel copyWith(void Function(LogLevel) updates) => super.copyWith((message) => updates(message as LogLevel)) as LogLevel; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
-  static LogType create() => LogType._();
-  LogType createEmptyInstance() => create();
-  static $pb.PbList<LogType> createRepeated() => $pb.PbList<LogType>();
+  static LogLevel create() => LogLevel._();
+  LogLevel createEmptyInstance() => create();
+  static $pb.PbList<LogLevel> createRepeated() => $pb.PbList<LogLevel>();
   @$core.pragma('dart2js:noInline')
-  static LogType getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<LogType>(create);
-  static LogType? _defaultInstance;
+  static LogLevel getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<LogLevel>(create);
+  static LogLevel? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get name => $_getSZ(0);

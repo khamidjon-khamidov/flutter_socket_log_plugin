@@ -1,28 +1,28 @@
 part of flutter_socket_log_plugin;
 
 abstract class ProtoMaker {
-  static List<protos.LogType> defaultLogTypes = [
-    createLogType(
+  static List<protos.LogLevel> defaultLogLevels = [
+    createLogLevel(
       'Error',
       Colors.red.value,
       Icons.error.codePoint,
     ),
-    createLogType(
+    createLogLevel(
       'Debug',
       Colors.black.value,
       Icons.bug_report.codePoint,
     ),
-    createLogType(
+    createLogLevel(
       'Warning',
       Colors.yellow.value,
       Icons.warning.codePoint,
     ),
-    createLogType(
+    createLogLevel(
       'Info',
       Colors.blue.value,
       Icons.info_outline.codePoint,
     ),
-    createLogType(
+    createLogLevel(
       'Success',
       Colors.green.value,
       Icons.done.codePoint,
@@ -42,6 +42,24 @@ abstract class ProtoMaker {
     ),
   ];
 
+  static protos.LogMessage createLogMessage({
+    required String appName,
+    required String message,
+    required protos.LogLevel logLevel,
+    required List<protos.LogTag> logTags,
+    required List<protos.LogTag> allLogTags,
+    required List<protos.LogLevel> allLogLevels,
+  }) {
+    return protos.LogMessage.create()
+      ..timestamp = DateTime.now().millisecondsSinceEpoch
+      ..appName = appName
+      ..message = message
+      ..allLogLevels.addAll(allLogLevels)
+      ..allLogTags.addAll(allLogTags)
+      ..logTags.addAll(logTags)
+      ..logLevel = logLevel;
+  }
+
   static protos.LogTag createLogTag(String name, int color, int iconData) {
     return protos.LogTag.create()
       ..name = name
@@ -49,8 +67,8 @@ abstract class ProtoMaker {
       ..iconData = iconData;
   }
 
-  static protos.LogType createLogType(String name, int color, int iconData) {
-    return protos.LogType.create()
+  static protos.LogLevel createLogLevel(String name, int color, int iconData) {
+    return protos.LogLevel.create()
       ..name = name
       ..color = color
       ..iconData = iconData;
