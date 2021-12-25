@@ -27,22 +27,22 @@ const LogType$json = const {
   '1': 'LogType',
   '2': const [
     const {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
-    const {'1': 'color', '3': 2, '4': 1, '5': 9, '10': 'color'},
+    const {'1': 'color', '3': 2, '4': 1, '5': 5, '10': 'color'},
     const {'1': 'iconData', '3': 3, '4': 1, '5': 5, '10': 'iconData'},
   ],
 };
 
 /// Descriptor for `LogType`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List logTypeDescriptor = $convert.base64Decode('CgdMb2dUeXBlEhIKBG5hbWUYASABKAlSBG5hbWUSFAoFY29sb3IYAiABKAlSBWNvbG9yEhoKCGljb25EYXRhGAMgASgFUghpY29uRGF0YQ==');
+final $typed_data.Uint8List logTypeDescriptor = $convert.base64Decode('CgdMb2dUeXBlEhIKBG5hbWUYASABKAlSBG5hbWUSFAoFY29sb3IYAiABKAVSBWNvbG9yEhoKCGljb25EYXRhGAMgASgFUghpY29uRGF0YQ==');
 @$core.Deprecated('Use logTagDescriptor instead')
 const LogTag$json = const {
   '1': 'LogTag',
   '2': const [
     const {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
-    const {'1': 'color', '3': 2, '4': 1, '5': 9, '10': 'color'},
+    const {'1': 'color', '3': 2, '4': 1, '5': 5, '10': 'color'},
     const {'1': 'iconData', '3': 3, '4': 1, '5': 5, '10': 'iconData'},
   ],
 };
 
 /// Descriptor for `LogTag`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List logTagDescriptor = $convert.base64Decode('CgZMb2dUYWcSEgoEbmFtZRgBIAEoCVIEbmFtZRIUCgVjb2xvchgCIAEoCVIFY29sb3ISGgoIaWNvbkRhdGEYAyABKAVSCGljb25EYXRh');
+final $typed_data.Uint8List logTagDescriptor = $convert.base64Decode('CgZMb2dUYWcSEgoEbmFtZRgBIAEoCVIEbmFtZRIUCgVjb2xvchgCIAEoBVIFY29sb3ISGgoIaWNvbkRhdGEYAyABKAVSCGljb25EYXRh');

@@ -103,7 +103,7 @@ class LogMessage extends $pb.GeneratedMessage {
 class LogType extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'LogType', createEmptyInstance: create)
     ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'name')
-    ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'color')
+    ..a<$core.int>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'color', $pb.PbFieldType.O3)
     ..a<$core.int>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'iconData', $pb.PbFieldType.O3, protoName: 'iconData')
     ..hasRequiredFields = false
   ;
@@ -111,7 +111,7 @@ class LogType extends $pb.GeneratedMessage {
   LogType._() : super();
   factory LogType({
     $core.String? name,
-    $core.String? color,
+    $core.int? color,
     $core.int? iconData,
   }) {
     final _result = create();
@@ -157,9 +157,9 @@ class LogType extends $pb.GeneratedMessage {
   void clearName() => clearField(1);
 
   @$pb.TagNumber(2)
-  $core.String get color => $_getSZ(1);
+  $core.int get color => $_getIZ(1);
   @$pb.TagNumber(2)
-  set color($core.String v) { $_setString(1, v); }
+  set color($core.int v) { $_setSignedInt32(1, v); }
   @$pb.TagNumber(2)
   $core.bool hasColor() => $_has(1);
   @$pb.TagNumber(2)
@@ -178,7 +178,7 @@ class LogType extends $pb.GeneratedMessage {
 class LogTag extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'LogTag', createEmptyInstance: create)
     ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'name')
-    ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'color')
+    ..a<$core.int>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'color', $pb.PbFieldType.O3)
     ..a<$core.int>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'iconData', $pb.PbFieldType.O3, protoName: 'iconData')
     ..hasRequiredFields = false
   ;
@@ -186,7 +186,7 @@ class LogTag extends $pb.GeneratedMessage {
   LogTag._() : super();
   factory LogTag({
     $core.String? name,
-    $core.String? color,
+    $core.int? color,
     $core.int? iconData,
   }) {
     final _result = create();
@@ -232,9 +232,9 @@ class LogTag extends $pb.GeneratedMessage {
   void clearName() => clearField(1);
 
   @$pb.TagNumber(2)
-  $core.String get color => $_getSZ(1);
+  $core.int get color => $_getIZ(1);
   @$pb.TagNumber(2)
-  set color($core.String v) { $_setString(1, v); }
+  set color($core.int v) { $_setSignedInt32(1, v); }
   @$pb.TagNumber(2)
   $core.bool hasColor() => $_has(1);
   @$pb.TagNumber(2)
