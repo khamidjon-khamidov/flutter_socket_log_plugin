@@ -11,7 +11,7 @@ import 'package:protobuf/protobuf.dart' as $pb;
 
 class LogMessage extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'LogMessage', createEmptyInstance: create)
-    ..a<$core.int>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'timestamp', $pb.PbFieldType.O3)
+    ..a<$core.int>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'timestamp', $pb.PbFieldType.OU3)
     ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'appName', protoName: 'appName')
     ..aOS(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'message')
     ..pc<LogLevel>(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'allLogLevels', $pb.PbFieldType.PM, protoName: 'allLogLevels', subBuilder: LogLevel.create)
@@ -79,7 +79,7 @@ class LogMessage extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   $core.int get timestamp => $_getIZ(0);
   @$pb.TagNumber(1)
-  set timestamp($core.int v) { $_setSignedInt32(0, v); }
+  set timestamp($core.int v) { $_setUnsignedInt32(0, v); }
   @$pb.TagNumber(1)
   $core.bool hasTimestamp() => $_has(0);
   @$pb.TagNumber(1)
@@ -127,8 +127,8 @@ class LogMessage extends $pb.GeneratedMessage {
 class LogLevel extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'LogLevel', createEmptyInstance: create)
     ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'name')
-    ..a<$core.int>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'color', $pb.PbFieldType.O3)
-    ..a<$core.int>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'iconData', $pb.PbFieldType.O3, protoName: 'iconData')
+    ..a<$core.int>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'color', $pb.PbFieldType.OU3)
+    ..a<$core.int>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'iconData', $pb.PbFieldType.OU3, protoName: 'iconData')
     ..hasRequiredFields = false
   ;
 
@@ -183,7 +183,7 @@ class LogLevel extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   $core.int get color => $_getIZ(1);
   @$pb.TagNumber(2)
-  set color($core.int v) { $_setSignedInt32(1, v); }
+  set color($core.int v) { $_setUnsignedInt32(1, v); }
   @$pb.TagNumber(2)
   $core.bool hasColor() => $_has(1);
   @$pb.TagNumber(2)
@@ -192,7 +192,7 @@ class LogLevel extends $pb.GeneratedMessage {
   @$pb.TagNumber(3)
   $core.int get iconData => $_getIZ(2);
   @$pb.TagNumber(3)
-  set iconData($core.int v) { $_setSignedInt32(2, v); }
+  set iconData($core.int v) { $_setUnsignedInt32(2, v); }
   @$pb.TagNumber(3)
   $core.bool hasIconData() => $_has(2);
   @$pb.TagNumber(3)
@@ -202,8 +202,8 @@ class LogLevel extends $pb.GeneratedMessage {
 class LogTag extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'LogTag', createEmptyInstance: create)
     ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'name')
-    ..a<$core.int>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'color', $pb.PbFieldType.O3)
-    ..a<$core.int>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'iconData', $pb.PbFieldType.O3, protoName: 'iconData')
+    ..a<$core.int>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'color', $pb.PbFieldType.OU3)
+    ..a<$core.int>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'iconData', $pb.PbFieldType.OU3, protoName: 'iconData')
     ..hasRequiredFields = false
   ;
 
@@ -258,7 +258,7 @@ class LogTag extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   $core.int get color => $_getIZ(1);
   @$pb.TagNumber(2)
-  set color($core.int v) { $_setSignedInt32(1, v); }
+  set color($core.int v) { $_setUnsignedInt32(1, v); }
   @$pb.TagNumber(2)
   $core.bool hasColor() => $_has(1);
   @$pb.TagNumber(2)
@@ -267,7 +267,7 @@ class LogTag extends $pb.GeneratedMessage {
   @$pb.TagNumber(3)
   $core.int get iconData => $_getIZ(2);
   @$pb.TagNumber(3)
-  set iconData($core.int v) { $_setSignedInt32(2, v); }
+  set iconData($core.int v) { $_setUnsignedInt32(2, v); }
   @$pb.TagNumber(3)
   $core.bool hasIconData() => $_has(2);
   @$pb.TagNumber(3)
