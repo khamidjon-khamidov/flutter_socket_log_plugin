@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttter_socket_log_plugin/fluttter_socket_log_plugin.dart';
+import 'package:fluttter_socket_log_plugin/gen/communication.pb.dart';
 
 void main() {
   FlutterSocketLogPlugin.instance.init(appName: 'Dummy App');
@@ -14,10 +15,9 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  @override
-  void initState() {
-    super.initState();
-  }
+  TextEditingController controller = TextEditingController();
+  LogLevel _logLevel = DefaultLogs.debug;
+  LogTag _logTag = DefaultLogs.bluetooth;
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +26,89 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('Plugin example app'),
         ),
-        body: const Center(
-          child: Text('asdfasfd'),
+        body: Column(
+          children: [
+            const SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: TextField(
+                controller: controller,
+              ),
+            ),
+            const SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text("LogLevel: "),
+                const SizedBox(width: 15),
+                DropdownButton<LogLevel>(
+                  value: _logLevel,
+                  icon: const Icon(Icons.arrow_drop_down_outlined),
+                  elevation: 16,
+                  style: const TextStyle(color: Colors.deepPurple),
+                  underline: Container(
+                    height: 2,
+                    color: Colors.deepPurpleAccent,
+                  ),
+                  onChanged: (LogLevel? newValue) {
+                    setState(() {
+                      _logLevel = newValue!;
+                    });
+                  },
+                  items: DefaultLogs.defaultLogLevels
+                      .map(
+                        (e) => DropdownMenuItem<LogLevel>(
+                          child: Text(e.name),
+                          value: e,
+                        ),
+                      )
+                      .toList(),
+                ),
+              ],
+            ),
+            const SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text("LogTag: "),
+                const SizedBox(width: 15),
+                DropdownButton<LogTag>(
+                  value: _logTag,
+                  icon: const Icon(Icons.arrow_drop_down_outlined),
+                  elevation: 16,
+                  style: const TextStyle(color: Colors.deepPurple),
+                  underline: Container(
+                    height: 2,
+                    color: Colors.deepPurpleAccent,
+                  ),
+                  onChanged: (LogTag? newValue) {
+                    setState(() {
+                      _logTag = newValue!;
+                    });
+                  },
+                  items: DefaultLogs.defaultLogTags
+                      .map(
+                        (e) => DropdownMenuItem<LogTag>(
+                          child: Text(e.name),
+                          value: e,
+                        ),
+                      )
+                      .toList(),
+                ),
+              ],
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                FlutterSocketLogPlugin.instance.log(
+                  controller.text,
+                  _logLevel,
+                  [_logTag],
+                );
+              },
+              child: const Text('Remote Log'),
+            )
+          ],
         ),
       ),
     );
