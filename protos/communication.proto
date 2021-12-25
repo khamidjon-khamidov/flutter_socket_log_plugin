@@ -5,21 +5,23 @@ option java_outer_classname = "Protos";
 option objc_class_prefix = "Protos";
 
 message LogMessage {
-    int32 timestamp = 1;
+    int64 timestamp = 1;
     string appName = 2;
     string message = 3;
-    repeated LogType logTypes = 4;
-    repeated LogTag logTags = 5;
+    repeated LogLevel allLogLevels = 4;
+    repeated LogTag allLogTags = 5;
+    repeated LogTag logTags = 6;
+    LogLevel logLevel = 7;
 }
 
-message LogType {
+message LogLevel {
     string name = 1;
-    string color = 2;
-    int32 iconData = 3;
+    int64 color = 2;
+    int64 iconData = 3;
 }
 
 message LogTag {
     string name = 1;
-    string color = 2;
-    int32 iconData = 3;
+    int64 color = 2;
+    int64 iconData = 3;
 }
