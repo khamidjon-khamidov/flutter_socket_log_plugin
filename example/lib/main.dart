@@ -100,7 +100,7 @@ class _MyAppState extends State<MyApp> {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                FlutterSocketLogPlugin.instance.log(
+                FlutterSocketLogPlugin.log(
                   controller.text,
                   _logLevel,
                   [_logTag],

@@ -20,9 +20,16 @@ abstract class FlutterSocketLogPlugin {
     List<protos.LogTag>? logTags,
   });
 
+  static void log(
+    String log,
+    protos.LogLevel logLevel,
+    List<protos.LogTag> logTags,
+  ) =>
+      instance._log(log, logLevel, logTags);
+
   /// logs message with specific [logLevel] and [logTags]
   /// using [logTags], client app will be able to filter logTags
-  void log(
+  void _log(
     String log,
     protos.LogLevel logLevel,
     List<protos.LogTag> logTags,

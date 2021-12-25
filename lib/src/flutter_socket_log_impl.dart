@@ -71,7 +71,7 @@ class _FlutterSocketLogPluginImpl extends FlutterSocketLogPlugin {
   }
 
   @override
-  void log(
+  void _log(
     String log,
     protos.LogLevel logLevel,
     List<protos.LogTag> logTags,
