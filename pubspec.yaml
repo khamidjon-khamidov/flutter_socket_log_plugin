@@ -32,3 +32,4 @@ flutter:
       macos:
         pluginClass: FluttterSocketLogPlugin
 
+9
