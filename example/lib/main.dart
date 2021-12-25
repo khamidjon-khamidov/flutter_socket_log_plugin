@@ -1,7 +1,4 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:fluttter_socket_log_plugin/fluttter_socket_log_plugin.dart';
 
 void main() {
@@ -20,18 +17,6 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    initPlatformState();
-  }
-
-  Future<void> initPlatformState() async {
-    String platformVersion;
-    try {} on PlatformException {
-      platformVersion = 'Failed to get platform version.';
-    }
-
-    if (!mounted) return;
-
-    setState(() {});
   }
 
   @override

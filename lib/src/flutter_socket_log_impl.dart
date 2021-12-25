@@ -25,8 +25,8 @@ class _FlutterSocketLogPluginImpl extends FlutterSocketLogPlugin {
     isInitialized = true;
 
     this.appName = appName;
-    allLogTags = logTags ?? ProtoMaker.defaultLogTags;
-    allLogLevels = logLevels ?? ProtoMaker.defaultLogLevels;
+    allLogTags = logTags ?? DefaultLogs.defaultLogTags;
+    allLogLevels = logLevels ?? DefaultLogs.defaultLogLevels;
     initSocket();
   }
 
