@@ -3,6 +3,7 @@ library flutter_socket_log_plugin;
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:fixnum/fixnum.dart' as fixnum;
 import 'package:flutter/material.dart';
 import 'package:fluttter_socket_log_plugin/gen/communication.pb.dart' as protos;
 import 'package:rxdart/rxdart.dart';

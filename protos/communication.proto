@@ -5,7 +5,7 @@ option java_outer_classname = "Protos";
 option objc_class_prefix = "Protos";
 
 message LogMessage {
-    uint32 timestamp = 1;
+    uint64 timestamp = 1;
     string appName = 2;
     string message = 3;
     repeated LogLevel allLogLevels = 4;

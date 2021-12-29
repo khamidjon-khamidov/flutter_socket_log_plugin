@@ -10,7 +10,7 @@ abstract class ProtoMaker {
     required List<protos.LogLevel> allLogLevels,
   }) {
     return protos.LogMessage.create()
-      ..timestamp = DateTime.now().millisecondsSinceEpoch
+      ..timestamp = fixnum.Int64(DateTime.now().millisecondsSinceEpoch)
       ..appName = appName
       ..message = message
       ..allLogLevels.addAll(allLogLevels)

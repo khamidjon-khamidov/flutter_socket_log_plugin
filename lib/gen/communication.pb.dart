@@ -7,11 +7,12 @@
 
 import 'dart:core' as $core;
 
+import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
 
 class LogMessage extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'LogMessage', createEmptyInstance: create)
-    ..a<$core.int>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'timestamp', $pb.PbFieldType.OU3)
+    ..a<$fixnum.Int64>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'timestamp', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'appName', protoName: 'appName')
     ..aOS(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'message')
     ..pc<LogLevel>(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'allLogLevels', $pb.PbFieldType.PM, protoName: 'allLogLevels', subBuilder: LogLevel.create)
@@ -23,7 +24,7 @@ class LogMessage extends $pb.GeneratedMessage {
 
   LogMessage._() : super();
   factory LogMessage({
-    $core.int? timestamp,
+    $fixnum.Int64? timestamp,
     $core.String? appName,
     $core.String? message,
     $core.Iterable<LogLevel>? allLogLevels,
@@ -77,9 +78,9 @@ class LogMessage extends $pb.GeneratedMessage {
   static LogMessage? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.int get timestamp => $_getIZ(0);
+  $fixnum.Int64 get timestamp => $_getI64(0);
   @$pb.TagNumber(1)
-  set timestamp($core.int v) { $_setUnsignedInt32(0, v); }
+  set timestamp($fixnum.Int64 v) { $_setInt64(0, v); }
   @$pb.TagNumber(1)
   $core.bool hasTimestamp() => $_has(0);
   @$pb.TagNumber(1)
