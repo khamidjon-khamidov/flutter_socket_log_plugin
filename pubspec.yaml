@@ -12,6 +12,7 @@ dependencies:
     sdk: flutter
   protobuf: ^2.0.1
   rxdart: ^0.27.3
+  network_info_plus: ^2.1.2
 
 dev_dependencies:
   flutter_test:

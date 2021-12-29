@@ -20,6 +20,10 @@ abstract class FlutterSocketLogPlugin {
     List<protos.LogTag>? logTags,
   });
 
+  void restart();
+
+  Future<String?> get wifiIp;
+
   static void log(
     String log,
     protos.LogLevel logLevel,

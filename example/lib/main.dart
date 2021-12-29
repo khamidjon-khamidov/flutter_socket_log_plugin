@@ -98,6 +98,14 @@ class _MyAppState extends State<MyApp> {
               ],
             ),
             const SizedBox(height: 20),
+            FutureBuilder<String?>(
+              initialData: 'Unknown',
+              future: FlutterSocketLogPlugin.instance.wifiIp,
+              builder: (context, data) {
+                return Text('You ip address: ${data.data}');
+              },
+            ),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 FlutterSocketLogPlugin.log(
@@ -107,7 +115,14 @@ class _MyAppState extends State<MyApp> {
                 );
               },
               child: const Text('Remote Log'),
-            )
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                FlutterSocketLogPlugin.instance.restart();
+              },
+              child: const Text('Restart'),
+            ),
           ],
         ),
       ),

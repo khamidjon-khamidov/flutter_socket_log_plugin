@@ -5,6 +5,7 @@ class _FlutterSocketLogPluginImpl extends FlutterSocketLogPlugin {
   List<protos.LogTag> allLogTags = [];
   List<protos.LogLevel> allLogLevels = [];
   late String appName;
+  ServerSocket? _server;
 
   BehaviorSubject<Socket?> clientSubject = BehaviorSubject.seeded(null);
 
@@ -31,14 +32,26 @@ class _FlutterSocketLogPluginImpl extends FlutterSocketLogPlugin {
   }
 
   void initSocket() async {
-    final server = await ServerSocket.bind(InternetAddress.anyIPv4, 4567);
+    print('Server started listening...');
+    _server = await ServerSocket.bind(InternetAddress.anyIPv4, 4567);
 
-    server.listen((mClient) {
+    _server?.listen((mClient) {
       handleConnection(mClient);
     });
   }
 
+  @override
+  void restart() {
+    print('restarting...');
+    _server?.close();
+    initSocket();
+  }
+
+  @override
+  Future<String?> get wifiIp => NetworkInfo().getWifiIP();
+
   void handleConnection(Socket mClient) {
+    print('New Client: ${mClient.address}');
     mClient.listen(
       (Uint8List data) async {
         final message = String.fromCharCodes(data);
@@ -85,6 +98,12 @@ class _FlutterSocketLogPluginImpl extends FlutterSocketLogPlugin {
       allLogLevels: allLogLevels,
     );
 
-    client.then((Socket? mClient) => {mClient?.write(message.writeToBuffer())});
+    client.then((Socket? mClient) {
+      if (mClient == null) {
+        print('flutter_socket_log_impl: Client is null. NOT LOGGING');
+      }
+
+      mClient?.write(message.writeToBuffer());
+    });
   }
 }
