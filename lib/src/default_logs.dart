@@ -9,7 +9,7 @@ abstract class DefaultLogs {
 
   static protos.LogLevel debug = ProtoMaker.createLogLevel(
     'Debug',
-    Colors.black.value,
+    Colors.white.value,
     Icons.bug_report.codePoint,
   );
 

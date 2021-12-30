@@ -12,7 +12,7 @@ class _FlutterSocketLogPluginImpl extends FlutterSocketLogPlugin {
   @override
   Stream<Socket?> get clientStream => clientSubject.stream;
 
-  Future<Socket?> get client => clientSubject.last;
+  Future<Socket?> get client => clientSubject.first;
 
   @override
   void init({
@@ -54,8 +54,10 @@ class _FlutterSocketLogPluginImpl extends FlutterSocketLogPlugin {
     print('New Client: ${mClient.address}');
     mClient.listen(
       (Uint8List data) async {
+        print('Got message: ${String.fromCharCodes(data)}');
         final message = String.fromCharCodes(data);
         if (message == 'flutter_socket_log_plugin') {
+          print('closing last client');
           await closeLastClient();
           print('New client connected. Address: ${mClient.address}');
           clientSubject.add(mClient);
@@ -73,7 +75,7 @@ class _FlutterSocketLogPluginImpl extends FlutterSocketLogPlugin {
     );
   }
 
-  Future<void> closeLastClient() async => (await clientSubject.last)?.close();
+  Future<void> closeLastClient() async => (await clientSubject.first)?.close();
 
   Future<void> closeClient(Socket mClient) async {
     Socket? lastClient = await clientSubject.last;
@@ -101,9 +103,10 @@ class _FlutterSocketLogPluginImpl extends FlutterSocketLogPlugin {
     client.then((Socket? mClient) {
       if (mClient == null) {
         print('flutter_socket_log_impl: Client is null. NOT LOGGING');
+        return;
       }
 
-      mClient?.write(message.writeToBuffer());
+      mClient.write(message.writeToJson());
     });
   }
 }
