@@ -1,9 +1,5 @@
 syntax = "proto3";
 
-option java_package = "com.khamidjon.flutter_socket_log_plugin";
-option java_outer_classname = "Protos";
-option objc_class_prefix = "Protos";
-
 message LogMessage {
     uint64 timestamp = 1;
     string appName = 2;
