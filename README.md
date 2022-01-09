@@ -1,4 +1,7 @@
 ![Logo](debugger.png)
+<p align="center">
+  <img src="debugger.png" />
+</p>
 
 <p align="center">
     <a href="https://github.com/SomeoneAndNoone/flutter_socket_log_plugin/pulls">
