@@ -12,3 +12,15 @@
 </p>
 
 # fluttter_socket_log_plugin
+
+Logging flutter apps to remote using socket. In order to connect to remote app, you need to be in the same local network. The tester will be able to see all the logs inside the client app.
+
+You can find the client app source code [here](https://github.com/SomeoneAndNoone/flutter_socket_log_client).
+
+### Installation
+
+Add
+
+```bash
+card_swiper : # latest version
+```
