@@ -33,4 +33,6 @@ flutter:
         pluginClass: FluttterSocketLogPlugin
       macos:
         pluginClass: FluttterSocketLogPlugin
+      windows:
+        pluginClass: FluttterSocketLogPlugin
 
