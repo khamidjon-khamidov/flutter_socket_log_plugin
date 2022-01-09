@@ -1,4 +1,3 @@
-![Logo](debugger.png)
 <p align="center">
   <img src="debugger.png" />
 </p>
