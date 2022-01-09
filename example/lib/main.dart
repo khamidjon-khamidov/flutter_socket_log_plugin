@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:fluttter_socket_log_plugin/fluttter_socket_log_plugin.dart';
 import 'package:fluttter_socket_log_plugin/gen/communication.pb.dart';
@@ -102,7 +104,14 @@ class _MyAppState extends State<MyApp> {
               initialData: 'Unknown',
               future: FlutterSocketLogPlugin.instance.wifiIp,
               builder: (context, data) {
-                return Text('You ip address: ${data.data}');
+                return Text('You ip address: ${data.data ?? 'Not Found'}');
+              },
+            ),
+            const SizedBox(height: 20),
+            StreamBuilder<Socket?>(
+              stream: FlutterSocketLogPlugin.instance.clientStream,
+              builder: (c, s) {
+                return Text('Socket connected to : ${s.data?.remoteAddress.address}');
               },
             ),
             const SizedBox(height: 20),

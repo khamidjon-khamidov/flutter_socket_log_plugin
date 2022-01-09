@@ -44,6 +44,7 @@ class _FlutterSocketLogPluginImpl extends FlutterSocketLogPlugin {
   void restart() {
     print('restarting...');
     _server?.close();
+    Future.delayed(const Duration(seconds: 2));
     initSocket();
   }
 
