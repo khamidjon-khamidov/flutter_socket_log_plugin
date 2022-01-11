@@ -22,5 +22,11 @@ You can find the client app source code [here](https://github.com/SomeoneAndNoon
 Add
 
 ```bash
-card_swiper : # latest version
+flutter_socket_log_plugin : # latest version
 ```
+
+or run
+```bash
+flutter pub add flutter_socket_log_plugin
+```
+
