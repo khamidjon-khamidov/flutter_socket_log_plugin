@@ -17,6 +17,10 @@ Logging flutter apps to remote using socket. In order to connect to remote app, 
 
 You can find the client app source code [here](https://github.com/SomeoneAndNoone/flutter_socket_log_client).
 
+# Client application to see logs
+
+![Horizontal](https://media.giphy.com/media/A5e69PGNChOq2eOtDA/giphy.gif)
+
 ### Installation
 
 Add
