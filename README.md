@@ -19,7 +19,7 @@ You can find the client app source code [here](https://github.com/SomeoneAndNoon
 
 # Client application to see logs
 
-![Horizontal](https://media.giphy.com/media/A5e69PGNChOq2eOtDA/giphy.gif)
+![Horizontal](https://media.giphy.com/media/a35rObGGc30I28rAEQ/giphy.gif)
 
 ### Installation
 
