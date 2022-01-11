@@ -19,7 +19,7 @@ You can find the client app source code [here](https://github.com/SomeoneAndNoon
 
 # Client application to see logs
 
-![Horizontal](https://media.giphy.com/media/a35rObGGc30I28rAEQ/giphy.gif)
+![Horizontal](https://github.com/SomeoneAndNoone/my_pictures/blob/main/flutter_socket_log_plugin/5.gif)
 
 ### Installation
 
