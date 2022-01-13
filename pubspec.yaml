@@ -1,6 +1,6 @@
 name: fluttter_socket_log_plugin
 description: A Flutter package which provides remote socket logging to see debug prints outside the app. This is especially useful for QA testers.
-version: 1.0.2
+version: 1.0.3
 homepage: https://github.com/SomeoneAndNoone/flutter_socket_log_plugin
 
 environment:

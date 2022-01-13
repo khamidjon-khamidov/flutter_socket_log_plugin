@@ -1,8 +1,4 @@
 <p align="center">
-  <img src="https://github.com/SomeoneAndNoone/my_pictures/blob/main/flutter_socket_log_plugin/banner.jpg" />
-</p>
-
-<p align="center">
     <a href="https://github.com/SomeoneAndNoone/flutter_socket_log_plugin/pulls">
         <img src="https://img.shields.io/badge/PRs-Welcome-brightgreen.svg" alt="PRs Welcome" />
     </a>
