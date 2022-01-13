@@ -13,6 +13,7 @@ dependencies:
   protobuf: ^2.0.1
   rxdart: ^0.27.3
   network_info_plus: ^2.1.2
+  fixnum: ^1.0.0
 
 dev_dependencies:
   flutter_test:
