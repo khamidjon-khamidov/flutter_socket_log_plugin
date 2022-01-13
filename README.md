@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="debugger.png" />
+  <img src="https://github.com/SomeoneAndNoone/my_pictures/blob/main/flutter_socket_log_plugin/debugger.png" />
 </p>
 
 <p align="center">
