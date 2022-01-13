@@ -7,15 +7,15 @@ class _FlutterSocketLogPluginImpl extends FlutterSocketLogPlugin {
   late String appName;
   ServerSocket? _server;
 
-  BehaviorSubject<Socket?> clientSubject = BehaviorSubject.seeded(null);
+  final BehaviorSubject<Socket?> _clientSubject = BehaviorSubject.seeded(null);
 
   @override
-  Stream<Socket?> get clientStream => clientSubject.stream;
+  Stream<Socket?> get _clientStream => _clientSubject.stream;
 
-  Future<Socket?> get client => clientSubject.first;
+  Future<Socket?> get client => _clientSubject.first;
 
   @override
-  void init({
+  void _init({
     required String appName,
     List<protos.LogLevel>? logLevels,
     List<protos.LogTag>? logTags,
@@ -41,7 +41,7 @@ class _FlutterSocketLogPluginImpl extends FlutterSocketLogPlugin {
   }
 
   @override
-  void restart() {
+  void _restart() {
     print('restarting...');
     _server?.close();
     Future.delayed(const Duration(seconds: 2));
@@ -49,7 +49,7 @@ class _FlutterSocketLogPluginImpl extends FlutterSocketLogPlugin {
   }
 
   @override
-  Future<String?> get wifiIp => NetworkInfo().getWifiIP();
+  Future<String?> get _wifiIp => NetworkInfo().getWifiIP();
 
   void handleConnection(Socket mClient) {
     print('New Client: ${mClient.address}');
@@ -61,7 +61,7 @@ class _FlutterSocketLogPluginImpl extends FlutterSocketLogPlugin {
           print('closing last client');
           await closeLastClient();
           print('New client connected. Address: ${mClient.address}');
-          clientSubject.add(mClient);
+          _clientSubject.add(mClient);
         } else {
           print('Unknown client: address: ${mClient.address}, message: $message');
           mClient.close();
@@ -76,12 +76,12 @@ class _FlutterSocketLogPluginImpl extends FlutterSocketLogPlugin {
     );
   }
 
-  Future<void> closeLastClient() async => (await clientSubject.first)?.close();
+  Future<void> closeLastClient() async => (await _clientSubject.first)?.close();
 
   Future<void> closeClient(Socket mClient) async {
-    Socket? lastClient = await clientSubject.last;
+    Socket? lastClient = await _clientSubject.last;
     if (lastClient != null && lastClient.address == mClient.address) {
-      clientSubject.add(null);
+      _clientSubject.add(null);
     }
     mClient.close();
   }

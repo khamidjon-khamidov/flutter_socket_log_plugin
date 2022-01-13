@@ -5,7 +5,7 @@ import 'package:fluttter_socket_log_plugin/fluttter_socket_log_plugin.dart';
 import 'package:fluttter_socket_log_plugin/gen/communication.pb.dart';
 
 void main() {
-  FlutterSocketLogPlugin.instance.init(appName: 'Dummy App');
+  FlutterSocketLogPlugin.init(appName: 'Dummy App');
   runApp(const MyApp());
 }
 
@@ -19,7 +19,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   TextEditingController controller = TextEditingController();
   LogLevel _logLevel = DefaultLogs.debug;
-  LogTag _logTag = DefaultLogs.bluetooth;
+  LogTag _logTag = DefaultLogs.network;
 
   @override
   Widget build(BuildContext context) {
@@ -102,14 +102,14 @@ class _MyAppState extends State<MyApp> {
             const SizedBox(height: 20),
             FutureBuilder<String?>(
               initialData: 'Unknown',
-              future: FlutterSocketLogPlugin.instance.wifiIp,
+              future: FlutterSocketLogPlugin.wifiIp,
               builder: (context, data) {
                 return Text('You ip address: ${data.data ?? 'Not Found'}');
               },
             ),
             const SizedBox(height: 20),
             StreamBuilder<Socket?>(
-              stream: FlutterSocketLogPlugin.instance.clientStream,
+              stream: FlutterSocketLogPlugin.clientStream,
               builder: (c, s) {
                 return Text('Socket connected to : ${s.data?.remoteAddress.address}');
               },
@@ -128,7 +128,7 @@ class _MyAppState extends State<MyApp> {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                FlutterSocketLogPlugin.instance.restart();
+                FlutterSocketLogPlugin.restart();
               },
               child: const Text('Restart'),
             ),
