@@ -3,6 +3,7 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+  fluttter_socket_log_plugin
   network_info_plus_windows
 )
 
