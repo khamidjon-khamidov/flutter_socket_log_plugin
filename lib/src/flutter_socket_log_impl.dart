@@ -2,8 +2,8 @@ part of flutter_socket_log_plugin;
 
 class _FlutterSocketLogPluginImpl extends FlutterSocketLogPlugin {
   bool isInitialized = false;
-  List<protos.LogTag> allLogTags = [];
-  List<protos.LogLevel> allLogLevels = [];
+  List<LogTag> allLogTags = [];
+  List<LogLevel> allLogLevels = [];
   late String appName;
   ServerSocket? _server;
 
@@ -17,8 +17,8 @@ class _FlutterSocketLogPluginImpl extends FlutterSocketLogPlugin {
   @override
   void _init({
     required String appName,
-    List<protos.LogLevel>? logLevels,
-    List<protos.LogTag>? logTags,
+    List<LogLevel>? logLevels,
+    List<LogTag>? logTags,
   }) {
     if (isInitialized) {
       throw Exception('FlutterSocketLogPlugin: plugin already initialized');
@@ -58,7 +58,6 @@ class _FlutterSocketLogPluginImpl extends FlutterSocketLogPlugin {
         print('Got message: ${String.fromCharCodes(data)}');
         final message = String.fromCharCodes(data);
         if (message == 'flutter_socket_log_plugin') {
-          print('closing last client');
           await closeLastClient();
           print('New client connected. Address: ${mClient.address}');
           _clientSubject.add(mClient);
@@ -79,7 +78,7 @@ class _FlutterSocketLogPluginImpl extends FlutterSocketLogPlugin {
   Future<void> closeLastClient() async => (await _clientSubject.first)?.close();
 
   Future<void> closeClient(Socket mClient) async {
-    Socket? lastClient = await _clientSubject.last;
+    Socket? lastClient = await _clientSubject.first;
     if (lastClient != null && lastClient.address == mClient.address) {
       _clientSubject.add(null);
     }
@@ -89,10 +88,11 @@ class _FlutterSocketLogPluginImpl extends FlutterSocketLogPlugin {
   @override
   void _log(
     String log,
-    protos.LogLevel logLevel,
-    List<protos.LogTag> logTags,
+    LogLevel logLevel,
+    List<LogTag> logTags,
   ) {
-    protos.LogMessage message = ProtoMaker.createLogMessage(
+    LogMessage message = LogMessage(
+      timestamp: DateTime.now().millisecondsSinceEpoch,
       appName: appName,
       message: log,
       logLevel: logLevel,
@@ -103,11 +103,14 @@ class _FlutterSocketLogPluginImpl extends FlutterSocketLogPlugin {
 
     client.then((Socket? mClient) {
       if (mClient == null) {
-        print('flutter_socket_log_impl: Client is null. NOT LOGGING');
         return;
       }
 
-      mClient.write(message.writeToJson());
+      try {
+        mClient.write(json.encode(message.toJson()));
+      } catch (e) {
+        print('error happened in encoding message: $message');
+      }
     });
   }
 }

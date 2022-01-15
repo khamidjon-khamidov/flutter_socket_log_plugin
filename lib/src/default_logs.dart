@@ -1,49 +1,49 @@
 part of flutter_socket_log_plugin;
 
 abstract class DefaultLogs {
-  static protos.LogLevel error = ProtoMaker.createLogLevel(
-    'Error',
-    Colors.red.value,
-    Icons.error.codePoint,
+  static LogLevel error = LogLevel(
+    name: 'Error',
+    color: Colors.red.value,
+    iconData: Icons.error.codePoint,
   );
 
-  static protos.LogLevel debug = ProtoMaker.createLogLevel(
-    'Debug',
-    Colors.white.value,
-    Icons.bug_report.codePoint,
+  static LogLevel debug = LogLevel(
+    name: 'Debug',
+    color: Colors.white.value,
+    iconData: Icons.bug_report.codePoint,
   );
 
-  static protos.LogLevel warning = ProtoMaker.createLogLevel(
-    'Warning',
-    Colors.yellow.value,
-    Icons.warning.codePoint,
+  static LogLevel warning = LogLevel(
+    name: 'Warning',
+    color: Colors.yellow.value,
+    iconData: Icons.warning.codePoint,
   );
 
-  static protos.LogLevel info = ProtoMaker.createLogLevel(
-    'Info',
-    Colors.blue.value,
-    Icons.info_outline.codePoint,
+  static LogLevel info = LogLevel(
+    name: 'Info',
+    color: Colors.blue.value,
+    iconData: Icons.info_outline.codePoint,
   );
 
-  static protos.LogLevel success = ProtoMaker.createLogLevel(
-    'Success',
-    Colors.green.value,
-    Icons.done.codePoint,
+  static LogLevel success = LogLevel(
+    name: 'Success',
+    color: Colors.green.value,
+    iconData: Icons.done.codePoint,
   );
 
-  static protos.LogTag network = ProtoMaker.createLogTag(
-    'Network',
-    Colors.red.shade50.value,
-    Icons.network_wifi.codePoint,
+  static LogTag network = LogTag(
+    name: 'Network',
+    color: Colors.red.shade50.value,
+    iconData: Icons.network_wifi.codePoint,
   );
 
-  static protos.LogTag bluetooth = ProtoMaker.createLogTag(
-    'Bluetooth',
-    Colors.blue.value,
-    Icons.bluetooth.codePoint,
+  static LogTag bluetooth = LogTag(
+    name: 'Bluetooth',
+    color: Colors.blue.value,
+    iconData: Icons.bluetooth.codePoint,
   );
 
-  static List<protos.LogLevel> defaultLogLevels = [
+  static List<LogLevel> defaultLogLevels = [
     error,
     debug,
     warning,
@@ -51,7 +51,7 @@ abstract class DefaultLogs {
     success,
   ];
 
-  static List<protos.LogTag> defaultLogTags = [
+  static List<LogTag> defaultLogTags = [
     network,
     bluetooth,
   ];

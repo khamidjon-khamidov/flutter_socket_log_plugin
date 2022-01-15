@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:fluttter_socket_log_plugin/fluttter_socket_log_plugin.dart';
-import 'package:fluttter_socket_log_plugin/gen/communication.pb.dart';
 
 void main() {
   FlutterSocketLogPlugin.init(appName: 'Dummy App');

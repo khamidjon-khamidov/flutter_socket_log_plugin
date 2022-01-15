@@ -14,34 +14,34 @@ abstract class FlutterSocketLogPlugin {
   /// if no log tag is set, the defaults are used([bluetooth, network])
   static void init({
     required String appName,
-    List<protos.LogLevel>? logLevels,
-    List<protos.LogTag>? logTags,
+    List<LogLevel>? logLevels,
+    List<LogTag>? logTags,
   }) =>
       _instance._init(appName: appName, logTags: logTags, logLevels: logLevels);
 
   /// logs to remote client app
   static void log(
     String log,
-    protos.LogLevel logLevel,
-    List<protos.LogTag> logTags,
+    LogLevel logLevel,
+    List<LogTag> logTags,
   ) =>
       _instance._log(log, logLevel, logTags);
 
   /// creates tag with given parameters
-  static protos.LogTag createTag(
+  static LogTag createTag(
     String name,
     int color,
     int iconData,
   ) =>
-      ProtoMaker.createLogTag(name, color, iconData);
+      LogTag(name: name, color: color, iconData: iconData);
 
   /// creates log level with given parameters
-  static protos.LogLevel createLogLevel(
+  static LogLevel createLogLevel(
     String name,
     int color,
     int iconData,
   ) =>
-      ProtoMaker.createLogLevel(name, color, iconData);
+      LogLevel(name: name, color: color, iconData: iconData);
 
   static void restart() => _instance._restart();
 
@@ -62,15 +62,15 @@ abstract class FlutterSocketLogPlugin {
 
   void _init({
     required String appName,
-    List<protos.LogLevel>? logLevels,
-    List<protos.LogTag>? logTags,
+    List<LogLevel>? logLevels,
+    List<LogTag>? logTags,
   });
 
   /// logs message with specific [logLevel] and [logTags]
   /// using [logTags], client app will be able to filter logTags
   void _log(
     String log,
-    protos.LogLevel logLevel,
-    List<protos.LogTag> logTags,
+    LogLevel logLevel,
+    List<LogTag> logTags,
   );
 }
