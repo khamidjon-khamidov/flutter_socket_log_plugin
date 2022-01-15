@@ -143,6 +143,19 @@ class _MyAppState extends State<MyApp> {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
+                for (int i = 0; i < 100; i++) {
+                  FlutterSocketLogPlugin.log(
+                    i.toString(),
+                    DefaultLogs.debug,
+                    [DefaultLogs.network],
+                  );
+                }
+              },
+              child: const Text('Send bulk messages from 1 to 100'),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
                 FlutterSocketLogPlugin.restart();
               },
               child: const Text('Restart'),
