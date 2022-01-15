@@ -1,13 +1,44 @@
 part of flutter_socket_log_plugin;
 
 class _FlutterSocketLogPluginImpl extends FlutterSocketLogPlugin {
+  static const String _separator = '*#+k_!';
+  final int delay = 300;
+
+  final PublishSubject<String> _sendClientSubject = PublishSubject();
+
   bool isInitialized = false;
   List<LogTag> allLogTags = [];
   List<LogLevel> allLogLevels = [];
   late String appName;
   ServerSocket? _server;
+  int lastProcessTime = DateTime.now().subtract(const Duration(hours: 1)).millisecondsSinceEpoch;
 
   final BehaviorSubject<Socket?> _clientSubject = BehaviorSubject.seeded(null);
+
+  _FlutterSocketLogPluginImpl() {
+    // _sendClientSubject.stream.flatMap(duration);
+
+    _sendClientSubject.stream.map((value) async {
+      int nowInt = now();
+      int delta = max(0, delay - (nowInt - lastProcessTime));
+      await Future.delayed(Duration(milliseconds: delta));
+      var mClient = await client;
+      if (mClient != null) {
+        try {
+          // add separator to fix bug(multiple messages are being added to the same message)
+          mClient.write(value);
+        } catch (e) {
+          _printLog('error happened in encoding message: $value');
+        }
+      }
+      lastProcessTime = now();
+      return value;
+    }).listen((value) {
+      // do nothing
+    });
+  }
+
+  int now() => DateTime.now().millisecondsSinceEpoch;
 
   @override
   Stream<Socket?> get _clientStream => _clientSubject.stream;
@@ -32,7 +63,7 @@ class _FlutterSocketLogPluginImpl extends FlutterSocketLogPlugin {
   }
 
   void initSocket() async {
-    print('Server started listening...');
+    _printLog('Server started listening...');
     _server = await ServerSocket.bind(InternetAddress.anyIPv4, 4567);
 
     _server?.listen((mClient) {
@@ -42,7 +73,7 @@ class _FlutterSocketLogPluginImpl extends FlutterSocketLogPlugin {
 
   @override
   void _restart() {
-    print('restarting...');
+    _printLog('restarting...');
     _server?.close();
     Future.delayed(const Duration(seconds: 2));
     initSocket();
@@ -52,17 +83,17 @@ class _FlutterSocketLogPluginImpl extends FlutterSocketLogPlugin {
   Future<String?> get _wifiIp => NetworkInfo().getWifiIP();
 
   void handleConnection(Socket mClient) {
-    print('New Client: ${mClient.address}');
+    _printLog('New Client: ${mClient.address}');
     mClient.listen(
       (Uint8List data) async {
-        print('Got message: ${String.fromCharCodes(data)}');
+        _printLog('Got message: ${String.fromCharCodes(data)}');
         final message = String.fromCharCodes(data);
         if (message == 'flutter_socket_log_plugin') {
           await closeLastClient();
-          print('New client connected. Address: ${mClient.address}');
+          _printLog('New client connected. Address: ${mClient.address}');
           _clientSubject.add(mClient);
         } else {
-          print('Unknown client: address: ${mClient.address}, message: $message');
+          _printLog('Unknown client: address: ${mClient.address}, message: $message');
           mClient.close();
         }
       },
@@ -101,16 +132,12 @@ class _FlutterSocketLogPluginImpl extends FlutterSocketLogPlugin {
       allLogLevels: allLogLevels,
     );
 
-    client.then((Socket? mClient) {
-      if (mClient == null) {
-        return;
-      }
+    _sendClientSubject.add('${json.encode(message.toJson())}$_separator');
+  }
 
-      try {
-        mClient.write(json.encode(message.toJson()));
-      } catch (e) {
-        print('error happened in encoding message: $message');
-      }
-    });
+  void _printLog(String log) {
+    if (kDebugMode) {
+      print(log);
+    }
   }
 }

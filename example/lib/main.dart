@@ -19,6 +19,7 @@ class _MyAppState extends State<MyApp> {
   TextEditingController controller = TextEditingController();
   LogLevel _logLevel = DefaultLogs.debug;
   LogTag _logTag = DefaultLogs.network;
+  int counter = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -123,6 +124,21 @@ class _MyAppState extends State<MyApp> {
                 );
               },
               child: const Text('Remote Log'),
+            ),
+            const SizedBox(height: 20),
+            Text('$counter'),
+            const SizedBox(height: 5),
+            ElevatedButton(
+              onPressed: () {
+                FlutterSocketLogPlugin.log(
+                  counter.toString(),
+                  DefaultLogs.debug,
+                  [DefaultLogs.network],
+                );
+                counter++;
+                setState(() {});
+              },
+              child: const Text('Send Counter'),
             ),
             const SizedBox(height: 20),
             ElevatedButton(
