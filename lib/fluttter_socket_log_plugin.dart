@@ -1,5 +1,6 @@
 library flutter_socket_log_plugin;
 
+import 'dart:collection';
 import 'dart:convert';
 import 'dart:io';
 import 'dart:math';

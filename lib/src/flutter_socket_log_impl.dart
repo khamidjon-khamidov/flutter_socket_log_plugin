@@ -2,9 +2,9 @@ part of flutter_socket_log_plugin;
 
 class _FlutterSocketLogPluginImpl extends FlutterSocketLogPlugin {
   static const String _separator = '*#+k_!';
-  final int delay = 300;
+  final int delay = 200;
 
-  final PublishSubject<String> _sendClientSubject = PublishSubject();
+  // final PublishSubject<String> _sendClientSubject = PublishSubject();
 
   bool isInitialized = false;
   List<LogTag> allLogTags = [];
@@ -15,27 +15,45 @@ class _FlutterSocketLogPluginImpl extends FlutterSocketLogPlugin {
 
   final BehaviorSubject<Socket?> _clientSubject = BehaviorSubject.seeded(null);
 
-  _FlutterSocketLogPluginImpl() {
-    // _sendClientSubject.stream.flatMap(duration);
+  final Queue<String> _sendQueue = Queue<String>();
 
-    _sendClientSubject.stream.map((value) async {
-      int nowInt = now();
-      int delta = max(0, delay - (nowInt - lastProcessTime));
-      await Future.delayed(Duration(milliseconds: delta));
-      var mClient = await client;
-      if (mClient != null) {
-        try {
-          // add separator to fix bug(multiple messages are being added to the same message)
-          mClient.write(value);
-        } catch (e) {
-          _printLog('error happened in encoding message: $value');
+  _FlutterSocketLogPluginImpl() {
+    Stream.periodic(Duration(milliseconds: delay)).listen((event) async {
+      if (_sendQueue.isNotEmpty) {
+        String message = _sendQueue.removeFirst();
+        var mClient = await client;
+        if (mClient != null) {
+          try {
+            // add separator to fix bug(multiple messages are being added to the same message)
+            mClient.write('$message$_separator');
+          } catch (e) {
+            _printLog('error happened in encoding message: $message');
+          }
         }
       }
-      lastProcessTime = now();
-      return value;
-    }).listen((value) {
-      // do nothing
     });
+
+    // _sendClientSubject.stream.map((value) async {
+    //   print('Value came to map: $value');
+    //   int nowInt = now();
+    //   int delta = max(0, delay - (nowInt - lastProcessTime));
+    //
+    //   await Future.delayed(Duration(milliseconds: delta));
+    //   await Future.delayed(const Duration(hours: 1));
+    //   var mClient = await client;
+    //   if (mClient != null) {
+    //     try {
+    //       // add separator to fix bug(multiple messages are being added to the same message)
+    //       mClient.write('$value$_separator');
+    //     } catch (e) {
+    //       _printLog('error happened in encoding message: $value');
+    //     }
+    //   }
+    //   lastProcessTime = now();
+    //   return value;
+    // }).listen((value) {
+    //   // do nothing
+    // });
   }
 
   int now() => DateTime.now().millisecondsSinceEpoch;
@@ -132,7 +150,9 @@ class _FlutterSocketLogPluginImpl extends FlutterSocketLogPlugin {
       allLogLevels: allLogLevels,
     );
 
-    _sendClientSubject.add('${json.encode(message.toJson())}$_separator');
+    // todo
+    _sendQueue.add(json.encode(message.toJson()));
+    // _sendClientSubject.add(json.encode(message.toJson()));
   }
 
   void _printLog(String log) {
