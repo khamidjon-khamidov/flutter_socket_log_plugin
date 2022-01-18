@@ -13,3 +13,11 @@
 ## 1.0.3
 
 - Bug fix
+
+## 1.1.3
+
+- Add android build to the client app
+
+- Use serializers instead of protos 
+
+- Bug fix

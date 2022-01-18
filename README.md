@@ -33,7 +33,7 @@ flutter pub add flutter_socket_log_plugin
 ### How to Use
 
 ##### Install Client Application
-Install client app using the [flutter source code](https://github.com/SomeoneAndNoone/flutter_socket_log_client) for windows, linux, mac, android, ios or use app for [windows](https://github.com/SomeoneAndNoone/my_pictures/blob/main/flutter_socket_log_plugin/runners/flutter_socket_log_client.exe).
+Install client app using the [flutter source code](https://github.com/SomeoneAndNoone/flutter_socket_log_client) for windows, linux, mac, android, ios or install app for [windows](https://github.com/SomeoneAndNoone/my_pictures/blob/main/flutter_socket_log_plugin/runners/flutter_socket_log_client.exe) and [android](https://github.com/SomeoneAndNoone/my_pictures/blob/main/flutter_socket_log_plugin/runners/socket_log_client.apk).
 
 ##### Basic Usage
 
@@ -117,3 +117,7 @@ FlutterSocketLogPlugin.log(
 ```bash
 Logger.debugNetwork('Write your log here');
 ```
+
+#### Log Tags and Log Levels
+
+Log Tags and Log Levels are customizable which means that you can create your own by custom names, colors as well as icons. As a result you can get those in the client application.
